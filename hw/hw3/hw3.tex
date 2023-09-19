@@ -1,0 +1,384 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+\newcommand{\hmwkTitle}{Homework 3}
+\newcommand{\hmwkDueDate}{September 21, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}\\}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\unit{1.7}
+
+\problem{8}
+Prove that if \(n\) is a perfect square, then \(n + 2\) is not a perfect square.\\
+
+\begin{proof}
+    Let \(n\) be a perfect square. Given P(x) = \(\exists x \in \AllIntegers, n = x^2\) and Q(y) = \(\exists y \in \AllIntegers, n + 2 = y^2\), we will prove that \(\forall n \in \AllIntegers(P(n)\implies\neg Q(n))\) using a proof by contradiction.\\
+    \textbf{Proof by Contradiction:}\\
+    \begin{align*}
+        \text{Assume } \exists n \in \AllIntegers(P(n) \implies Q(n)).&&\text{Premise.}\\
+        P(x) = \exists x \in \AllIntegers, n = x^2&&\text{Premise.}\\
+        Q(y) = \exists x \in \AllIntegers, n + 2 = y^2&&\text{Premise.}\\
+        x^2 + 2 = y^2&&\text{Algebraic Substitution.}\\
+        y^2 - x^2 = 2&&\text{Algebraic Equivalence.}\\
+        (y + x)(y - x) = 2&&\text{Factorization.}\\
+    \end{align*}
+    Since \(y\) and \(x\) are integers, \(y + x\) and \(y - x\) are integers. The only integer factors of 2 are 1 and 2. Therefore,\\
+    \begin{align*}
+        y + x = 1\\
+        y - x = 2
+    \end{align*}
+    Using algebraic equivalence, we can solve for \(y\).\\
+    \begin{align*}
+        y = \frac{3}{2}&&\bot\\
+    \end{align*}
+    Since \(y\) is not an integer, we have reached a contradiction. Therefore, \(\forall n \in \AllIntegers(P(n)\implies\neg Q(n))\).
+\end{proof}
+
+\pagebreak
+\problem{14}
+Prove that if \(x\) is rational and \(x \neq 0\), then \(1/x\) is rational.\\
+
+\begin{proof}
+    Let \(x\) be rational and \(x \neq 0\). Given \(P(x) = \exists p,q \in \AllIntegers, p,q \neq 0, x = p/q\) and \(Q(y) = \exists r,s \in \AllIntegers, r,s \neq 0,  1/x = r/s,\)k we will prove that \(\forall x \in \AllRationals(P(x)\implies Q(x))\) using a direct proof.\\
+    \textbf{Direct Proof:}
+    \begin{align*}
+        x = \frac{p}{q}&&\text{Premise.}\\
+        \frac{1}{x} = \frac{q}{p}&&\text{Algebraic Equivalence.}\\
+        \frac{1}{x} = \frac{r}{s}&&\text{Let } r = q \text{ and } s = p.\\
+        s \neq 0&&\text{Since } p \neq 0.\\
+        \exists r,s \in \AllIntegers, r,s \neq 0,  1/x = r/s&&\text{Premise.}\\
+        \forall x \in \AllRationals(P(x)\implies Q(x))&&\text{Conclusion.}
+    \end{align*}
+\end{proof}
+
+\pagebreak
+\problem{20}
+Prove that if \(n\) is an integer and \(3n + 2\) is even, then n is even using\\
+\begin{enumerate}[a)]
+    \item a proof by contraposition\\
+    \textbf{Proof by Contraposition:}
+    \begin{proof}
+        Given \(P(n) = \exists x \in \AllIntegers, 2x = 3n + 2\) and \(Q(n) = \exists y \in \AllIntegers, 2y = n\), we will prove that \(\forall n \in \AllIntegers(P(n)\implies Q(n))\) using a proof by contraposition. In fact, we want to show that if \(n\) is odd, then \(3n + 2\) is odd.\\
+        \begin{align*}
+            \text{Assume } \exists n \in \AllIntegers(\neg Q(n) \implies \neg P(n)).&&\text{Premise.}\\
+            \neg Q(n) = \exists y \in \AllIntegers,n = 2y + 1&&\text{Premise.}\\
+        \end{align*}
+        Now we need to prove \(\neg P(n)\).\\
+        \begin{align*}
+            3n + 2 &= 3(2y + 1) + 2&&\text{Algebraic Substitution.}\\
+            &= 6y + 5 &&\text{Algebraic Equivalence.}\\
+            & = 2(3y + 2) + 1&&\text{Algebraic Equivalence.}\\
+        \end{align*}
+        Let \(\bar{k}=3y+2, \bar{k}\in\AllIntegers.\)
+        \begin{align*}
+            &= 2\bar{k} + 1&&\text{Algebraic Equivalence.}\\
+        \end{align*}
+        Since \(\bar{k}\) is an integer, \(2\bar{k}+1\) is odd. Therefore, \(3n + 2\) is odd and we have proved the contrapositive.\\
+    \end{proof}
+    \pagebreak
+    \item a proof by contradiction\\
+    \textbf{Proof by Contradiction:}\\
+    \begin{proof}
+        Given \(P(n) = \exists x \in \AllIntegers, 2x = 3n + 2\) and \(Q(n) = \exists y \in \AllIntegers, 2y = n\), we will prove that \(\forall n \in \AllIntegers(P(n)\implies Q(n))\) using a proof by contradiction. In fact, we have to show a contradiction in the statement, if \(3n+2\) is even then \(n\) is odd.\\
+        \begin{align*}
+            \text{Assume } \exists n \in \AllIntegers(P(n) \implies \neg Q(n)).&&\text{Premise.}\\
+            P(n) = \exists x \in \AllIntegers, 2x = 3n + 2&&\text{Premise.}\\
+            \neg Q(n) = \exists y \in \AllIntegers, n = 2y + 1&&\text{Premise.}\\            
+        \end{align*}
+        Now we need to find the contradiction in the statement.\\
+        \begin{align*}
+            2x &= 3(2y + 1) + 2&&\text{Algebraic Substitution.}\\
+            &= 6y + 5 &&\text{Algebraic Equivalence.}\\
+            & = 2(3y + 2) + 1&&\text{Algebraic Equivalence.}\\
+        \end{align*}
+        Let \(\bar{k}=3y+2, \bar{k}\in\AllIntegers.\)
+        \begin{align*}
+            2x &= 2\bar{k} + 1&&\bot\\
+        \end{align*}
+        Here we have found the contradiction in the previous statement, since \(2x\) is even and \(2\bar{k}+1\) is odd. Therefore, we have proved the proposition.\\
+    \end{proof}
+\end{enumerate}
+\pagebreak
+\problem{30}
+Prove that \(m^2 = n^2\) if and only if \(m = n\) or \(m = -n\).
+\begin{proof}
+    Given \(P(m,n) = "m^2 = n^2"\) and \(Q(m,n) = "m = n" \Or "m = -n"\), we will prove that \(\forall m,n \in \AllIntegers(P(m,n)\iff Q(m,n))\) using a direct proof.\\
+    \textbf{Direct Proof:}\\
+    In the case of \(P(m,n) \implies Q(m,n)\),\\
+    \begin{align*}
+        m^2 &= n^2\\
+        m^2 - n^2 &= 0\\
+        (m - n)(m + n) &= 0\\
+    \end{align*}
+    Which yields,
+    \begin{align*}
+        m - n &= 0\\
+        m &= n\\
+        \textbf{or}\\
+        m + n &= 0\\
+        m &= -n\\
+    \end{align*}
+    Therefore, \(P(m,n) \implies Q(m,n)\).\\\\
+    In the case of \(Q(m,n) \implies P(m,n)\) we can assume that \(m = n\) without the loss of generality,\\
+    \begin{align*}
+        m &= n\\
+        m - n &= 0\\
+        (m - n)(m + n) &= 0\\
+        m^2 - n^2 &= 0\\
+        m^2 &= n^2\\
+    \end{align*}
+    Therefore, \(Q(m,n) \implies P(m,n)\).
+    Since \(P(m,n) \implies Q(m,n)\) and \(Q(m,n) \implies P(m,n)\), we have proved that \(\forall m,n \in \AllIntegers(P(m,n)\iff Q(m,n))\).
+\end{proof}
+
+\pagebreak
+\unit{1.8}
+\problem{8}
+Prove using the notion of without loss of generality that \(5x + 5y\) is an odd integer when \(x\) and \(y\) are integers of opposite parity.
+
+\begin{proof}
+    Given \(P(x,y) = \exists k,l \in \AllIntegers, x = 2k, y = 2l+1\) and \(Q(x,y) = \exists w \in \AllIntegers, 2w + 1 = 5x + 5y\), we will prove that \(\forall x,y \in \AllIntegers(P(x,y)\implies Q(x,y)\) is odd) using a direct proof. Without loss of generality, we can assume that \(x\) is even and \(y\) is odd.\\
+    \textbf{Direct proof:}
+    \begin{align*}
+        \text{Assume } &x = 2k, y = 2l + 1, k,l \in \AllIntegers.&&\text{Premise.}\\
+        5x + 5y &= 5(2k) + 5(2l + 1)&&\text{Algebraic Substitution.}\\
+        &= 10k + 10l + 5&&\text{Algebraic Equivalence.}\\
+        &= 2(5k + 5l + 2) + 1&&\text{Algebraic Equivalence.}\\
+    \end{align*}
+    Let \(\bar{k} = 5k + 5l + 2, \bar{k} \in \AllIntegers\).
+    \begin{align*}
+        &= 2\bar{k} + 1&&\text{Algebraic Equivalence.}\\
+    \end{align*}
+    Therefore \(5x + 5y\) is an odd integer when \(x\) and \(y\) are integers of opposite parity.
+\end{proof}
+
+\pagebreak
+\problem{10}
+Prove that there is a positive integer that equals the sum of the positive integers not exceeding it. Is your proof constructive or nonconstructive?
+
+\begin{proof}
+    Given \(P(n) = \exists x \in \AllIntegers, x = \sum_{i=1}^{n}i\) and \(Q(n) = \exists y \in \AllIntegers, y > 0\), we will prove that \(\forall n \in \AllIntegers(P(n)\implies Q(n))\) using a direct proof.\\
+    \textbf{Constructive Proof:}
+    \begin{align*}
+        P(1)=\exists x \in \AllIntegers, x &= \sum_{i=1}^{1}i&&\text{Given P(1).}\\\\ &=1&&
+    \end{align*}
+    Using a \textbf{constructive} proof, we have shown that there exists a positive integer, 1, that equals the sum of the positive integers not exceeding it.
+\end{proof}
+
+\pagebreak
+\problem{32}
+Prove that there are no solutions in integers \(x\) and \(y\) to the equation \(2x^2 + 5y^2 = 14\).
+
+\begin{proof}
+    Given \(P(x,y) = \exists x,y \in \AllIntegers, 2x^2 + 5y^2 = 14\), we will prove that \(\forall x,y \in \AllIntegers(\neg P(x,y))\) using a proof by exhaustion.\\
+    \textbf{Proof by Exhaustion:}\\
+    Given \(2x^2 + 5y^2 = 14\),
+    \begin{align*}
+        |2x^2| &\leq 14\\
+        |5y^2| &\leq 14\\
+    \end{align*}
+    Our possible values for \(x\) are \(\{0,1,2,3\}\) and our possible values for \(y\) are \(\{0,1,2\}\).\\
+    \begin{align*}
+        2(0)^2 + 5(0)^2 &= 0 + 0 = 0 &\neq 14&&(0,0)\\
+        2(0)^2 + 5(1)^2 &= 0 + 5 = 5 &\neq 14&&(0,1)\\
+        2(0)^2 + 5(2)^2 &= 0 + 20 = 20 &\neq 14&&(0,2)\\
+        2(1)^2 + 5(0)^2 &= 2 + 0 = 2 &\neq 14&&(1,0)\\
+        2(1)^2 + 5(1)^2 &= 2 + 5 = 7 &\neq 14&&(1,1)\\
+        2(1)^2 + 5(2)^2 &= 2 + 20 = 22 &\neq 14&&(1,2)\\
+        2(2)^2 + 5(0)^2 &= 8 + 0 = 8 &\neq 14&&(2,0)\\
+        2(2)^2 + 5(1)^2 &= 8 + 5 = 13 &\neq 14&&(2,1)\\
+        2(2)^2 + 5(2)^2 &= 8 + 20 = 28 &\neq 14&&(2,2)\\
+        2(3)^2 + 5(0)^2 &= 18 + 0 = 18 &\neq 14&&(3,0)\\
+        2(3)^2 + 5(1)^2 &= 18 + 5 = 23 &\neq 14&&(3,1)\\
+        2(3)^2 + 5(2)^2 &= 18 + 20 = 38 &\neq 14&&(3,2)\\
+    \end{align*}
+    Therefore, \(\forall x,y \in \AllIntegers(\neg P(x,y))\).
+\end{proof}
+
+\pagebreak
+\problem{36}
+Prove that \(\sqrt[3]{2}\) is irrational.
+
+\begin{proof}
+    Given P(x) = \(x \notin \AllRationals\), we can do a proof by contradiction to prove that \(\sqrt[3]{2}\) is irrational. Given \(\neg P(x) = \exists p,q \in \AllIntegers, q\neq 0, x = \frac{p}{q}\)\\
+    \textbf{Proof by Contradiction:}\\
+    \begin{align*}
+        \sqrt[3]{2} &= \frac{p}{q} && \text{Given } \neg P(x)\\
+        2 &= \frac{p^3}{q^3} && \text{Cubing both sides.}\\
+        2q^3 &= p^3 && \text{Multiplying both sides by } q^3.\\
+    \end{align*}
+    Let \(\bar{k} = q^3, \bar{k} \in \AllIntegers\).
+    \begin{align*}
+        2\bar{k} &= p^3 && \text{Algebraic Substitution.}\\
+        p^3 &\text{ is even.} && \text{Since } 2\bar{k} \text{ is even.}\\
+        p &\text{ is even.} && \text{Since } p^3 \text{ is even.}\\
+    \end{align*}
+    Since \(p\) is even, we have two cases where \(q\) is even and \(q\) is odd.\\
+    \begin{enumerate}
+        \item \(q\) is even.\\
+        \begin{align*}
+            2|p, 2|q&&\text{Since p and q are even.}\\
+            \gcd(p,q) \geq 2&&\text{Since p and q are even.}\\
+            &&\bot\\
+        \end{align*}
+        We find the contradiction in the statement, since \(\gcd(p,q) \geq 2\) and \(p/q\) is in lowest terms.
+        \item \(q\) is odd.\\
+        \begin{align*}
+            \exists l \in \AllIntegers, p &= 2l + 1&&\text{Since p is odd.}\\
+            2q^3 &= (2l + 1)^3&&\text{Algebraic Substitution.}\\
+            2q^3 &= (4l^2 + 4l + 1)(2l + 1)&&\text{Algebraic Expansion.}\\
+            2q^3 &= 8l^3 + 12l^2 + 6l + 1&&\text{Algebraic Expansion.}\\
+            2q^3 &= 2(4l^3 + 6l^2 + 3l) + 1&&\text{Algebraic Equivalence.}\\
+            &&\bot\\
+        \end{align*}
+        We find the contradiction in the statement, since \(2q^3\) is even and \(2(4l^3 + 6l^2 + 3l) + 1\) is odd.
+    \end{enumerate}
+    Therefore, we have proved that \(\sqrt[3]{2}\) is irrational by contradiction.
+\end{proof}
+
+\end{document}

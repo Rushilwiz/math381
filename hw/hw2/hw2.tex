@@ -1,0 +1,385 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+\newcommand{\hmwkTitle}{Homework 2}
+\newcommand{\hmwkDueDate}{September 12, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\subsection{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\unit{1.3}
+\problem{16 b)}
+Show that \([(p \rightarrow q) \And (q \rightarrow r)] \rightarrow (p \rightarrow r)\) is a tautology.
+\begin{align*}
+    [(p \rightarrow q) \And (q \rightarrow r)] \rightarrow (p \rightarrow r) &\equiv [(\neg p \Or q) \And (\neg q \Or r)] \rightarrow (\neg p \Or r) && \text{Logical equivalence.}\\
+    &\equiv \neg [(\neg p \Or q) \And (\neg q \Or r)] \Or (\neg p \Or r) && \text{Logical equivalence.}\\
+    &\equiv [\neg(\neg p \Or q) \And \neg( \neg q \Or r)] \Or (\neg p \Or r) && \text{De Morgan's Law.}\\
+    &\equiv [(\neg \neg p \And \neg q) \Or (\neg \neg q \And \neg r)] \Or (\neg p \Or r) && \text{De Morgan's Law.}\\
+    &\equiv [(p \And \neg q) \Or (q \And \neg r)] \Or (\neg p \Or r) && \text{Double Negation.}\\
+    &\equiv [(p \Or (q \And \neg r)) \And (\neg q \Or (q \And \neg r))] \Or (\neg p \Or r) && \text{Distributive Law.}\\
+    &\equiv [((p \Or q) \And (p \Or \neg r)) \And ((\neg q \Or q) \And (\neg q \Or \neg r))] \Or (\neg p \Or r) && \text{Distributive Law.}\\
+    &\equiv [((p \Or q) \And (p \Or \neg r)) \And (T \And (\neg q \Or \neg r))] \Or (\neg p \Or r) && \text{Negation Law.}\\
+    &\equiv [((p \Or q) \And (p \Or \neg r)) \And (\neg q \Or \neg r)] \Or (\neg p \Or r) && \text{Identity Law.}\\
+    &\equiv [((p \Or q) \And (\neg q \Or \neg r)) \And (p \Or \neg r)] \Or (\neg p \Or r) && \text{Commutative Law.}\\
+    &\equiv [((p \Or q) \And (\neg q \Or \neg r)) \Or (\neg p \Or r)] \And [(p \Or \neg r) \Or (\neg p \Or r)] && \text{Distributive Law.}\\
+    &\equiv [((p \Or q) \And (\neg q \Or \neg r)) \Or (\neg p \Or r)] \And [(r \Or \neg r) \Or (\neg p \Or p)] && \text{Associative Law.}\\
+    &\equiv [((p \Or q) \And (\neg q \Or \neg r)) \Or (\neg p \Or r)] \And [T \Or T] && \text{Negation Law.}\\
+    &\equiv [((p \Or q) \And (\neg q \Or \neg r)) \Or (\neg p \Or r)] \And T && \text{Domination Law.}\\
+    &\equiv ((p \Or q) \And (\neg q \Or \neg r)) \Or (\neg p \Or r) && \text{Identity Law.}\\
+    &\equiv [((p \Or q) \Or (\neg p \Or r)) \And ((\neg q \Or \neg r) \Or (\neg p \Or r))] && \text{Distributive Law.}\\
+    &\equiv [((p \Or \neg p) \Or (q \Or r)) \And ((\neg q \Or \neg p) \Or (\neg r \Or r))] && \text{Associative Law.}\\
+    &\equiv [T \Or (q \Or r)) \And ((\neg q \Or \neg p) \Or T)] && \text{Negation Law.}\\
+    &\equiv T \And T && \text{Domination Law.}\\
+    &\equiv T && \text{Identity Law.}\\
+\end{align*}
+\pagebreak
+\problem{16 d)}
+Show that \([(p \Or q) \And (p \rightarrow r) \And (q \rightarrow r)] \rightarrow r\) is a tautology.
+\begin{align*}
+    [(p \Or q) \And (p \rightarrow r) \And (q \rightarrow r)] \rightarrow r &\equiv \neg[(p \Or q) \And (\neg p \Or r) \And (\neg q \Or r )] \Or r &&\text{Logical equivalence.}\\
+    &\equiv[(\neg p \And \neg q) \Or (p \And \neg r) \Or (q \And \neg r)] \Or r &&\text{De Morgan's Law.}\\
+    &\equiv[(\neg p  \And \neg q) \Or ((p \Or q) \And \neg r)] \Or r &&\text{Distributive Law.}\\
+    &\equiv[((\neg p \And \neg q) \Or (p \Or q))\And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Distributive Law.}\\
+    &\equiv[(\neg p \Or (p \Or q)) \And (\neg q \Or (p \Or q)) \And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Distributive Law.}\\
+    &\equiv[(\neg p \Or p \Or q) \And (\neg q \Or p \Or q) \And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Associative Law.}\\
+    &\equiv[(T \Or q) \And (T \Or p) \And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Negation Law.}\\
+    &\equiv[T \And T \And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Domination Law.}\\
+    &\equiv[T \And ((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Domination Law.}\\
+    &\equiv[((\neg p \And \neg q) \Or \neg r)] \Or r &&\text{Identity Law.}\\
+    &\equiv(\neg p \And \neg q) \Or (\neg r \Or r) &&\text{Associative Law.}\\
+    &\equiv(\neg p \And \neg q) \Or T &&\text{Negation Law.}\\
+    &\equiv T &&\text{Domination Law.}\\
+\end{align*}
+\pagebreak
+\unit{1.4}
+\problem{6}
+Let \(N(x)\) be the statement “\(x\) has visited North Dakota,”
+where the domain consists of the students in your school.
+Express each of these quantifications in English.
+\begin{enumerate}[a)]
+    \item There exists a student in my school who has visited North Dakota.
+    \item Every student in my school has visited North Dakota.
+    \item There does not exist a student in my school who has visited North Dakota.
+    \item There exists a student in my school who has not visited North Dakota.
+    \item Not every student in my school has visited North Dakota.
+    \item Every student in my school has not visited North Dakota.
+\end{enumerate}
+\pagebreak
+\problem{10}
+Let \(C(x)\) be the statement “x has a cat,” let \(D(x)\) be the statement “x has a dog,” and let \(F(x)\) be the statement “x has a ferret.” Express each of these statements in terms of \(C(x)\), \(D(x)\), \(F(x)\), quantifiers, and logical connectives.
+Let the domain consist of all students in your class.
+\subsection{a)}
+A student in your class has a cat, a dog, and a ferret.
+\[
+    \exists x(C(x) \And D(x) \And F(x))
+\]
+\subsection{c)}
+Some student in your class has a cat and a ferret, but not a dog.
+\[
+    \exists x(C(x) \And F(x) \And \neg D(x))
+\]
+\subsection{e)}
+For each of the three animals, cats, dogs, and ferrets, there is a student in your class who has this animal as a pet.
+\[
+    \exists x(C(x)) \And \exists x(D(x)) \And \exists x(F(x))
+\]
+\pagebreak
+\problem{12}
+Let \(Q(x)\) be the statement “\(x + 1 > 2x.\)” If the domain consists of all integers, what are these truth values?
+\subsection{e)}
+False. Q(1) is false.
+\subsection{f)}
+True. Q(1) is false, so \(\exists x \neg Q(x)\).
+\subsection{g)}
+False. Q(0) is true, since there exists a Q(x) that is not true.
+\pagebreak
+\problem{24}
+Translate in two ways each of these statements into logical expressions using predicates, quantifiers, and logical connectives. First, let the domain consist of the students in your class and second, let it consist of all people.
+
+\textbf{Note:} \(C(x)\) = "x is in your class"
+
+\subsection{a)}
+Everyone in your class has a cellular phone. Where \(P(x)\) is the statement "x has a cellular phone."
+\[
+    \text{Out of everyone in my class, } \forall xP(x) \\
+\]
+\[
+    \text{Out of everyone, } \forall x(C(x) \rightarrow P(x))  
+\]
+
+\subsection{b)}
+Somebody in your class has seen a foreign movie. Where \(F(x)\) is the statement "x has seen a foreign movie."
+\[
+    \text{Out of everyone in my class, } \exists xF(x) \\
+\]
+\[
+    \text{Out of everyone, } \exists x(C(x) \And F(x))
+\]
+\subsection{c)}
+There is a person in your class who cannot swim. Where \(S(x)\) is the statement "x can swim."
+\[
+    \text{Out of everyone in my class, } \exists x \neg S(x) \\
+\]
+\[
+    \text{Out of everyone, } \exists x(C(x) \And \neg S(x))
+\]
+\subsection{d)}
+All students in your class can solve quadratic equations. Where \(Q(x)\) is the statement "x can solve quadratic equations."
+\[
+    \text{Out of everyone in my class, } \forall xQ(x) \\
+\]
+\[
+    \text{Out of everyone, } \forall x(C(x) \rightarrow Q(x))
+\]
+\subsection{e)}
+Some student in your class does not want to be rich. Where \(R(x)\) is the statement "x wants to be rich."
+\[
+    \text{Out of everyone in my class, } \exists x \neg R(x) \\
+\]
+\[
+    \text{Out of everyone, } \exists x(C(x) \And \neg R(x))
+\]
+\pagebreak
+\unit{1.5}
+\problem{6}
+Let \(C(x, y)\) mean that student \(x\) is enrolled in class \(y\), where the domain for \(x\) consists of all students in your school and the domain for \(y\) consists of all classes being given at your school. Express each of these statements by a simple English sentence.
+
+
+\subsection{a)}
+\[C(Randy Goldberg, CS 252)\]
+Randy Goldberg is enrolled in CS 252.
+\subsection{c)}
+\[\exists yC(Carol Sitea, y)\]
+There exists a class, \(y\), that Carol Sitea is enrolled in.
+\subsection{e)}
+\[\exists x \exists y \forall z((x \neq y) \And (C(x, z) \rightarrow C(y, z)))\]
+There exists two students, \(x\) and \(y\), such that for all classes, \(z\), student \(x\) and \(y\), if \(x\) is enrolled in \(z\), then \(y\) is enrolled in \(z\).
+\subsection{f)}
+\[\exists x\exists y\forall z((x \neq y) \And (C(x, z) \iff C(y, z)))\]
+There exists two students, \(x\) and \(y\), such that for all classes, \(z\), where student \(x\) and student \(y\) are not the same student, student \(x\) is enrolled in \(z\) if and only if student \(y\) is enrolled in \(z\).
+\pagebreak
+\problem{24}
+Translate each of these nested quantifications into an English statement that expresses a mathematical fact. The domain in each case consists of all real numbers.
+\subsection{c)}
+\[\exists x\exists y(((x \leq 0) \And (y \leq 0)) \And (x - y > 0))\]
+There exists two non-positive real numbers such that their difference is positive.
+\subsection{d)}
+\[\forall x\forall y((x \neq 0) \And (y \neq 0) \iff (xy \neq 0))\]
+For any two real numbers, \(x\) and \(y\), if and only if \(x\) and \(y\) are not zero, then their product is not zero.
+\pagebreak
+\unit{1.6}
+\problem{8}
+What rules of inference are used in this argument? “No man is an island. Manhattan is an island. Therefore, Manhattan is not a man.”\\
+\textbf{Let us assume:}\\
+\(P(x) = "x \text{ is a man}"\)\\
+\(Q(x) = "x \text{ is an island}"\)\\
+\[
+    \begin{tabular}{lcc}
+        & \textbf{Step} & \textbf{Reason} \\
+        1. & \(\forall x(\neg P(x) \rightarrow Q(x))\) & Premise. \\
+        2. & Q(Manhattan) & Premise. \\
+        3. & P(Manhattan) \(\rightarrow\neg\) Q(Manhattan) & Universal instantiation from (1). \\
+        4. & \(\neg(\neg\)Q(Manhattan)) & Double negation from (2).\\
+        5. & \(\neg\) P(Manhattan) & Modus tollens from (3) and (4).
+    \end{tabular}
+\]
+\pagebreak
+\problem{10}
+For each of these sets of premises, what relevant conclusion or conclusions can be drawn? Explain the rules of inference used to obtain each conclusion from the premises.
+\subsection{c)}
+\textbf{Assume:}\\
+P(x) = "x is an insect."\\
+Q(x) = "x has six legs."\\
+R(x, y) = "x eats y."\\
+\[
+    \begin{tabular}{lcc}
+        & \textbf{Step} & \textbf{Reason} \\
+        1. & \(\forall x(P(x) \implies Q(x))\) & Premise. \\
+        2. & P(Dragonflies) & Premise. \\
+        3. & \(\neg\)Q(Spiders) & Premise. \\
+        4. & R(Spiders, Dragonflies) & Premise. \\
+        5. & P(Dragonflies) \(\implies\) Q(Dragonflies) & Universal instantiation from (1). \\
+        6. & P(Spiders) \(\implies\) Q(Spiders) & Universal instantiation from (1). \\
+        7. & Q(Dragonflies) & Modus ponens from (2) and (5). \\
+        8. & \(\neg\)P(Spiders) & Modus tollens from (3) and (6). \\
+    \end{tabular}
+\]
+\pagebreak
+\subsection{d)}
+\textbf{Assume:}\\
+P(x) = "x is a student."\\
+Q(x) = "x has an internet account."\\
+\[
+    \begin{tabular}{lcc}
+        & \textbf{Step} & \textbf{Reason} \\
+        1. & \(\forall x(P(x) \implies Q(x))\) & Premise. \\
+        2. & \(\neg\)Q(Homer) & Premise. \\
+        3. & Q(Maggie) & Premise. \\
+        4. & P(Homer) \(\implies\) Q(Homer) & Universal instantiation from (1). \\
+        5. & \(\neg\)P(Homer) & Modus tollens from (2) and (4). \\
+    \end{tabular}
+\]
+\pagebreak
+\subsection{e)}
+“All foods that are healthy to eat do not taste good.”
+“Tofu is healthy to eat.” “You only eat what tastes
+good.” “You do not eat tofu.” “Cheeseburgers are not
+healthy to eat.”
+\textbf{Assume:}\\
+P(x) = "x is healthy to eat."\\
+Q(x) = "x tastes good."\\
+R(x) = "You eat x."\\
+\[
+    \begin{tabular}{lcc}
+        & \textbf{Step} & \textbf{Reason} \\
+        1. & \(\forall x(P(x) \implies \neg Q(x))\) & Premise. \\
+        2. & P(Tofu) & Premise. \\
+        3. & \(\forall x(R(x) \implies Q(x))\) & Premise. \\
+        4. & \(\neg\)R(Tofu) & Premise. \\
+        5. & \(\neg\)P(Cheeseburgers) & Premise. \\
+        6. & P(Tofu) \(\implies\) \(\neg\)Q(Tofu) & Universal instantiation from (1). \\
+        8. & \(\neg\)Q(Tofu) & Modus ponens from (2) and (6). \\
+    \end{tabular}
+\]
+\pagebreak
+\problem{24}
+The error in this arguement occurs in steps 3 and 5 when the reason for the steps is stated as simplification. In order to use simplication you must have an AND statement, but in this case there is an OR statement. The correct reason for steps 3 and 5 is disjunctive syllogism.
+\end{document}
