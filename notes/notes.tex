@@ -1,0 +1,297 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{babel}
+
+
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+%
+% Homework Problem Environment
+%
+% This environment takes an optional argument. When given, it will adjust the
+% problem counter. This is useful for when the problems given for your
+% assignment aren't sequential. See the last 3 problems of this template for an
+% example.
+%
+\newenvironment{homeworkProblem}[1][-1]{
+    \ifnum#1>0
+        \setcounter{homeworkProblemCounter}{#1}
+    \fi
+    \section{Problem \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+\newcommand{\hmwkTitle}{Notes}
+\newcommand{\hmwkDueDate}{Fall, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+\newcommand{\AllNaturals}{\mathbb{N}}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem{theorem}{Theorem}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{proposition}
+    The sum of the first n, positive odd integers is the equation \(n^2\).
+\end{proposition} 
+
+\begin{proof}
+    By induction
+    \begin{enumerate}
+        \item base case
+        \begin{align*}
+            P(1) &= 1^2 = 1\\
+        \end{align*}
+        \item inductive step
+        \begin{align*}
+            \text{Assume } P(n) = "1+3+5+...+2n-1 = n^2"\\
+            \text{WTS: } P(n+1) = "1+3+5+...+2n-1+2(n+1)-1 = (n+1)^2"\\
+            1+3+5+...+2n-1+2(n+1)-1 &= (n+1)^2\\
+        \end{align*}
+    \end{enumerate}
+\end{proof}
+\begin{proposition} All horses are the same color.\\
+\emph{Note:} It suffices to show: P(n) = "All sets of n horses have the same color"\\
+\begin{proof}
+    By induction
+    \begin{enumerate}
+        \item base case:\\
+        P(1) = "All sets of 1 horse have the same color"\\
+        \item inductive step: Assume P(n), i.e. every step of n horses have the same color\\
+        WTS: P(n+1), i.e. every set of n+1 horses have the same color\\
+        H = \(\{H_1, H_2, ..., H_n,H_{n+1}\}\) is a set of n+1 horses\\
+        \(H_1 = \{H_1, H_2, ..., H_n\}\) is a set of n horses\\
+        \(H_2 = \{H_2, H_3, ..., H_n,H_{n+1}\}\) is a set of n horses\\
+    \end{enumerate}
+\end{proof}
+\end{proposition}
+
+\begin{theorem}
+    Given two sets, when \(n \neq 1\), when they both overlap and are disjoint, the union of the two sets is equal to the sum of the two sets.
+\end{theorem}
+\pagebreak
+\section{Strong Induction}
+This is what we were doing before:\\
+\textbf{Weak Induction:}
+\begin{enumerate}
+    \item base case
+    \item inductive step (\(P(n) \implies P(n+1)\))
+\end{enumerate}
+Trying to prove \(P(n) \forall n \in \AllNaturals\).\\\\
+If \(P(n) \implies P(n+1)\) is too hard to show, instead try strong induction:
+\begin{enumerate}
+    \item base case (Assume all steps before \(n+1\))
+    \item Assume \(P(k)\forall k \in \{1,2,...,n\}\) then try to show P(n+1)
+\end{enumerate}
+\begin{proposition}
+    A chocolate bar with n \(\geq\) 1 pieces can be broken into individual pieces by making n-1 breaks.
+\end{proposition}
+\begin{proof}
+    Using weak induction,
+    \begin{enumerate}
+        \item base case: n = 1\\
+        1 piece can be broken into individual pieces by making 0 breaks.
+        \item inductive step\\
+        Assume P(n)="a bar with n pieces can be broken into individual pieces by making n-1 breaks"\\
+        WTS: P(n+1)="a bar with n+1 pieces can be broken into individual pieces by making n breaks"\\
+        The issue is that we need to know that everything from P(n) to P(1) works.\\
+        \textbf{Since we cannot prove this for an arbitrary n, we must use strong induction.}\\
+    \end{enumerate}
+\end{proof}
+\begin{proof}
+    Using strong induction,
+    \begin{enumerate}
+        \item base case: n = 1\\
+        1 piece can be broken into individual pieces by making 0 breaks.
+        \item inductive step\\
+        Assume P(k) \(\forall k \in \{1,2,...,n\}\)\\
+        WTS: P(n+1)="a bar with n+1 pieces can be broken into individual pieces by making n breaks"\\
+        \begin{enumerate}
+            \item Consider an arbitrary bar of n+1 size. Break the bar into two pieces
+            \begin{enumerate}
+                \item One piece has k pieces
+                \item The other piece has \((n+1)-k\) pieces
+            \end{enumerate}
+            \item Assuming \(P(k)\), the first piece can be broken into individual pieces by making \(k-1\) breaks.
+            \item \(P(n+1-k)\) will require \(n+1-k-1=n-k\) breaks.
+        \end{enumerate}
+        \(\therefore\) The total number of breaks is \(1+(k-1)+(n-k)=n\).
+    \end{enumerate}
+\end{proof}
+\pagebreak
+\begin{theorem}
+    It is true that strong induction \(\rightarrow\) weak induction
+\end{theorem}
+\begin{theorem}
+    Fundamental Theorem of Arithmetic:
+    \begin{align*}
+        \forall n \in \AllNaturals - {0,1}, \text{n is either prime or can be written as a product of primes.}\\
+    \end{align*}
+\end{theorem}
+\begin{proof}
+    Using strong induction,
+    \begin{enumerate}
+        \item base case: n = 2\\
+        2 is prime.
+        \item inductive step: Assume P(k) \(\forall k \in \{2,3,...,n\}\)\\
+        WTS: P(n+1)\\
+        We can prove this by cases:
+        \begin{enumerate}
+            \item n+1 is prime:
+                It can be expressed as \(1 \times  (n+1)\)
+            \item n+1 is not prime\\
+            \begin{align*}
+                \exists l,w \in \AllIntegers, n+1 = lw\\
+                1 < l, w < n+1\\
+            \end{align*}
+            So P(l) = T, P(w) = T, therefore:\\
+            \(l = p_1^{k_1}\times p_2^{k_2} \times ... \times p_n^{k_n}\), where \(p_1, p_2, ..., p_n\) are primes and \(k\in \AllNaturals\).\\
+            \(w = q_1^{j_1}\times q_2^{j_2} \times ... \times q_m^{j_m}\), where \(q_1, q_2, ..., q_m\) are primes and \(j\in \AllNaturals\).\\\\
+            Given \(l\) and \(w\), we can find \(n+1\) by multiplying them together.\\
+            \begin{align*}
+                n+1 &= lw\\
+                n+1 &= (p_1^{k_1}\times p_2^{k_2} \times ... \times p_n^{k_n}) (q_1^{j_1}\times q_2^{j_2} \times ... \times q_m^{j_m})\\
+            \end{align*}
+        \end{enumerate}
+    \end{enumerate}
+    \(n+1\) is a product of primes.\\
+\end{proof}
+\pagebreak
+\begin{proposition}
+    Consider the sequence \(a_1=0, a_2=1, a_n=2a_{n-1}-a_{n-2}\). Prove \(a_n = n-1\).
+\end{proposition}
+\begin{proof}
+    Using strong induction,
+    \begin{enumerate}
+        \item bsae case: n = 1, n=2\\
+        \(n=1: a_1 = 0 = 1-1\)\\
+    \end{enumerate}
+\end{proof}
+\end{document}
