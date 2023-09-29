@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1694145544 "/home/rushil/school/math/hw/hw1.tex" "hw1.pdf" "hw1" 1694145544 0
+["pdflatex"] 1696023088 "/home/rushil/school/math/hw/hw1/hw1.tex" "hw1.pdf" "hw1" 1696023089 0
   "/etc/texmf/web2c/texmf.cnf" 1693368362 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/rushil/school/math/hw/hw1.tex" 1694145543 6845 6f0a9d7413c773083ce767950272b7e1 ""
+  "/home/rushil/school/math/hw/hw1/hw1.tex" 1696023088 8571 848f96e4db99853e25d2c2e5a076b0ea ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -35,6 +35,7 @@
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1248133631 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1248133631 36118 fad905eba93cff5bce1e185fe980a177 ""
+  "/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb" 1248133631 31764 459c573c03a4949a528c2cc7f557e217 ""
   "/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.code.tex" 1673816307 1016 1c2b89187d12a2768764b83b4945667c ""
   "/usr/share/texlive/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex" 1601326656 43820 1fef971b75380574ab35a0d37fd92608 ""
@@ -97,6 +98,7 @@
   "/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty" 1251330371 3249 15763257e50278eef5db1952ccde229c ""
   "/usr/share/texlive/texmf-dist/tex/latex/amscls/amsthm.sty" 1591045760 12594 0d51ac3a545aaaa555021326ff22a6cc ""
   "/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty" 1359763108 5949 3f3fd50a8cc94c3d4cbf4fc66cd3df1c ""
+  "/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty" 1359763108 13829 94730e64147574077f8ecfea9bb69af4 ""
   "/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd" 1359763108 961 6518c6525a34feb5e8250ffa91731cff ""
   "/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd" 1359763108 961 d02606146ba5601b5645f987c92e6193 ""
   "/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1654720880 2222 78b930a5a6e3dc2ac69b78c2057b94d7 ""
@@ -140,8 +142,8 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1681034085 39561 34c98e380bf7c7201ee6a7909aff625a ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1693368379 4623455 fa0568a71dd9a288d6c226ee477506c6 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1693368408 7880218 5644a8bb2704ddc1060e0c139ce5389a ""
-  "hw1.aux" 1694145544 194 99cff90ccc1d8836afe187a548b2e38e "pdflatex"
-  "hw1.tex" 1694145543 6845 6f0a9d7413c773083ce767950272b7e1 ""
+  "hw1.aux" 1696023089 194 99cff90ccc1d8836afe187a548b2e38e "pdflatex"
+  "hw1.tex" 1696023088 8571 848f96e4db99853e25d2c2e5a076b0ea ""
   (generated)
   "hw1.aux"
   "hw1.log"

@@ -3,6 +3,7 @@
 \usepackage{fancyhdr}
 \usepackage{extramarks}
 \usepackage{amsmath}
+\usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{tikz}
@@ -216,12 +217,47 @@ Express each of these propositions as an English sentence.
 \\
 Since the columns are identical the law is true.
 
-\problem{6}
-\problem{8}
-\textbf{a)}
-\textbf{b)}
-\prob{32}
+\problem{6}\\
+Use a truth table to verify the first De Morgan law
+\begin{displaymath}
+    \neg(p \wedge q) \equiv \neg p \vee \neg q
+\end{displaymath}
+\begin{displaymath}
+    \begin{array}{|c c|c|c|c|c|c|}
 
+    p & q & \neg p & \neg q & p \wedge q & \neg(p \wedge q) & \neg p \vee \neg q \\
+    \hline
+    T & T & F      & F      & T          & F                & F                  \\
+    T & F & F      & T      & F          & T                & T                  \\
+    F & T & T      & F      & F          & T                & T                  \\
+    F & F & T      & T      & F          & T                & T                  \\
+    \end{array}
+\end{displaymath}
+\problem{8}\\
+Use De Morgan’s laws to find the negation of each of the
+following statements.\\
+\textbf{a)}
+Kwame will take a job in industry or go to graduate school. \\
+Kwame will not take a job in the industry and will not go to graduate school.\\
+\textbf{b)}
+Yoshiko knows Java and calculus.\\
+Yoshiko does not know Joava or does not know calculus.\\
+\prob{32}\\
+Show that \(p \leftrightarrow q\) and \(\neg p \leftrightarrow \neg q\) are logically equivalent.
+\begin{displaymath}
+    \begin{array}{|c c|c|c|c|c|c|}
+
+    p & q & \neg p & \neg q & p \leftrightarrow q & \neg p \leftrightarrow \neg q \\
+    \hline
+    T & T & F      & F      & T                   & T                             \\
+    T & F & F      & T      & F                   & F                             \\
+    F & T & T      & F      & F                   & F                             \\
+    F & F & T      & T      & T                   & T                             \\
+    \end{array}
+\end{displaymath}
+\begin{align*}
+    \therefore p \leftrightarrow q \equiv \neg p \leftrightarrow \neg q
+\end{align*}
 
 \pagebreak
 
