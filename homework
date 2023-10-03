@@ -2,9 +2,18 @@
 from string import Template
 import os
 import sys
+import datetime
+
+def next_weekday(d, weekday):
+    days_ahead = weekday - d.weekday()
+    if days_ahead <= 0: # Target day already happened this week
+        days_ahead += 7
+    return d + datetime.timedelta(days_ahead)
 
 i  = input("What number homework is it? ")
-d = input("What is the due date (e.g. September 12)? ")
+d = input("Is there a special due date? (if not leave empty) (e.g. September 12)? ")
+
+if d == "": d = next_weekday(datetime.datetime.now(), 3).strftime("%B %-d")
 
 s = {
     'number': i,
