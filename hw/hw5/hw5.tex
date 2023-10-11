@@ -298,12 +298,13 @@ Consider these functions from the set of students in a discrete mathematics clas
 \begin{enumerate}[a)]
     \item Prove that a strictly increasing function from \(\AllReals\) to itself is one-to-one.
     \begin{proof}
-        Lets take the strictly increasing function \(f(x) = x + 2)\). We can prove that this function is one-to-one by proving that for all \(x, y \in \AllReals\), \(f(x) = f(y) \implies x = y\).
-        \begin{align*}
-            f(x) &= f(y)\\
-            x + 2 &= y + 2\\
-            x &= y
-        \end{align*}
+        Since the function is strictly increasing, we can assume that \(\forall a,b \in \AllReals, a > b \implies f(a) > f(b)\). We can prove that this function is one-to-one by proving that for all \(x, y \in \AllReals\), \(f(x) = f(y) \implies x = y\). In order to use this, we'll use cases,
+        \begin{enumerate}
+            \item \(x > y\). Since \(f\) is strictly increasing, \(f(x) > f(y)\), which contradicts \(f(x) = f(y)\). Thus, \(x > y\) is impossible.
+            \item \(x < y\). Since \(f\) is strictly increasing, \(f(x) < f(y)\), which contradicts \(f(x) = f(y)\). Thus, \(x < y\) is impossible.
+            \item \(x = y\). This is trivially true.
+        \end{enumerate}
+        Since \(x > y\) and \(x < y\) are impossible, we can conclude that given \(f(x) = f(y)\), \(x = y\), and thus \(f\) is one-to-one.
     \end{proof}
     \item Give an example of an increasing function from \(\AllReals\) to itself that is not one-to-one.\\
     The piecewise function, \(f(x) = \begin{cases} 
