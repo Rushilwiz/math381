@@ -1,0 +1,314 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newcommand{\hmwkTitle}{Homework 5}
+\newcommand{\hmwkDueDate}{October 12, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\textbf{Due\ on\ \hmwkDueDate\ at 11:59pm}}\\
+    \normalsize\text{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+\newcommand{\intersection}{\cap}
+\newcommand{\union}{\cup}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\unit{2.2}
+\prob{2}
+Suppose that \(A\) is the set of sophomores at your school and \(B\) is the set of students in discrete mathematics at your school. Express each of these sets in terms of \(A\)
+and \(B\).
+\begin{enumerate}[a)]
+    \item the set of sophomores taking discrete mathematics in
+    your school
+    \begin{align*}
+        A \intersection B
+    \end{align*}
+    \item the set of sophomores at your school who are not taking discrete mathematics
+    \begin{align*}
+        A - B \text{ or } A \intersection B^{c}
+    \end{align*}
+    \item the set of students at your school who either are sophomores or are taking discrete mathematics
+    \begin{align*}
+        A \union B
+    \end{align*}
+    \item the set of students at your school who either are not sophomores or are not taking discrete mathematics
+    \begin{align*}
+        (A \intersection B)^{c}
+    \end{align*}
+\end{enumerate}
+
+\pagebreak
+\prob{14}
+Find the sets \(A\) and \(B\) if \(A - B = \{1, 5, 7, 8\}\), \(B - A = \{2, 10\}\), and \(A \intersection B = \{3, 6, 9\}\).\\
+
+Given \(A \intersection B = \{3, 6, 9\}\), we also know that \(A \intersection B^{c} = \{1,5,7,8\}\).\\
+\begin{align*}
+    (A \intersection B) \union (A \intersection B^{c}) &= A \intersection (B \union B^{c})\\
+    &= A \intersection U\\
+    &= A
+\end{align*}
+Given this, we can conclude that \(A = \{1,3,5,6,7,8,9\}\). Given \(A\), we can conclude that \(B = \{2,3,6,9,10\}\).
+
+\pagebreak
+\prob{20}
+Let \(A, B\) and \(C\) be sets. Show that,
+
+\begin{enumerate}
+    \item [a)] \((A \union B) \subseteq (A \union B  \union C)\)
+    \begin{align*}
+        (A \union B) \implies &\forall x, x \in A \Or x \in B\\
+        = &\forall x, x \in A \Or x \in B \Or x \in C\\
+        = &\forall x, x \in (A \union B \union C)\\\\
+        \therefore (A \union B) \subseteq (A \union B  \union C)
+    \end{align*}
+    \item [d)] \((A - C) \intersection (C - B) = \emptyset\)
+    \begin{align*}
+        (A - C) \intersection (C - B) &\subset (A \intersection C^{c}) \intersection (C \intersection B^{c})\\
+        &\subset A \intersection B \intersection (C^{c} \intersection C)\\
+        &\subset A \intersection B \intersection \emptyset\\
+        &\subset \emptyset
+    \end{align*}
+    The empty set is a subset of every set, so we can conclude that \((A - C) \intersection (C - B) = \emptyset\).
+    \item [e)]
+    \((B-A)\union (C-A) = (B \union C)-A\)\\\\
+    First, \((B-A)\union (C-A) \subset (B\union C)-A\).
+    \begin{align*}
+        x \in (B-A) \union (C-A)\\
+        x \in (B-A) \Or x \in (C-A)\\
+        x \in B \intersection A^{c} \Or x \in C \intersection A^{c}\\
+        (x \in  B \And x \notin A) \Or (x \in C \And x \notin A)\\
+        (x \in B \Or x \in C) \And (x \notin A)\\
+        (x \in B \union C) \And (x \notin A)\\
+        x \in (B \union C) \intersection A^{c}\\
+        x \in (B \union C) - A\\
+        \therefore (B-A)\union (C-A) \subset (B\union C)-A
+    \end{align*}
+    Then, \((B-A)\union (C-A) \supset (B\union C)-A\).
+    \begin{align*}
+        x \in (B \union C) - A\\
+        x \in (B \union C) \And x \notin A\\
+        (x \in B \Or x \in C) \And (x \notin A)\\
+        (x \in B \And x \notin A) \Or (x \in C \And x \notin A)\\
+        x \in B \intersection A^{c} \Or x \in C \intersection A^{c}\\
+        x \in (B-A) \Or x \in (C-A)\\
+        x \in (B-A) \union (C-A)\\
+        \therefore (B-A)\union (C-A) \supset (B\union C)-A
+    \end{align*}
+    Since we have proved either set is a subset of the other, we can conclude that \((B-A)\union (C-A) = (B\union C)-A\).
+\end{enumerate}
+
+\pagebreak
+\prob{54}
+Let \(A_{i} = \{\dots, -2, -1, 0, 1, \dots, i\}\). Find
+\begin{enumerate}[a)]
+    \item \(\bigcup\limits_{i=1}^{n}A_i\)
+    \begin{align*}
+        \bigcup\limits_{i=1}^{n}A_i &= \{\dots, -2, -1, 0, 1, \dots, n\}\\
+        &= \{x \in \AllIntegers \mid x \leq n\}\\
+        &= A_{n}
+    \end{align*}
+    \item \(\bigcap\limits_{i=1}^{n}A_i\) 
+    \begin{align*}
+        \bigcap\limits_{i=1}^{n}A_i &= \{\dots, -2, -1, 0, 1\}\\
+        &= \{x \in \AllIntegers \mid x \leq 1\}\\
+        &= A_{1}
+    \end{align*}
+\end{enumerate}
+
+\pagebreak
+\unit{2.3}
+\prob{2}
+Determine whether \(f\) is a function from \(\AllIntegers\) to \(\AllReals\) if 
+\begin{enumerate}[a)]
+    \item \(f(n) = \pm n. \)
+    Since a function cannot map to a single input, \(n\), to two different outputs, \(n\) and \(-n\), this is not a function.
+    \item \(f(n) = \sqrt{n^2 + 1}\)
+    This is a function, since for every input, \(n\), there is only one output, \(\sqrt{n^2 + 1}\), which is guaranteed to be a real number as for all integers, \(n^2 + 1 \geq 1\).
+    \item \(f(n)=\frac{1}{n^2-4}\)
+    This is not a function from \(\AllIntegers\) to \(\AllReals\), since \(n^2 - 4 = 0\) when \(n = \pm 2\), and thus \(f(n)\) is undefined for \(n = \pm 2\).
+\end{enumerate}
+
+\pagebreak
+\prob{6}
+Find the domain and range of each of these functions.
+
+\begin{enumerate}
+    \item [a)] the function that assigns to each pair of positive integers the first integer of the pair
+    \begin{align*}
+        \text{Domain: } &\AllIntegers^{+} \times \AllIntegers^{+}\\
+        \text{Range: } &\AllIntegers^{+}
+    \end{align*}
+    \item [d)] the function that assigns to each positive integer the
+    largest integer not exceeding the square root of the integer
+    \begin{align*}
+        \text{Domain: } &\AllIntegers^{+}\\
+        \text{Range: } &\AllIntegers^{+}
+    \end{align*}
+\end{enumerate}
+
+\pagebreak
+\prob{10}
+Determine whether each of these functions from
+\(\{a, b, c, d\}\) to itself is one-to-one.
+
+\begin{enumerate}[a)]
+    \item \(f(a)=b, f(b)=a, f(c)=c,f(d)=d\) Yes, every output has a unique input.
+    \item \(f(a) = b, f(b) = b, f(c) = d, f(d) = c\) No, \(b\) can be produced by both \(a\) and \(b\).
+    \item \(f(a) = d, f(b) = b, f(c) = c, f(d) = d\) No, \(d\) can be produced by both \(a\) and \(d\).
+\end{enumerate}
+
+\pagebreak
+\prob{16}
+Consider these functions from the set of students in a discrete mathematics class. Under what conditions is the function one-to-one if it assigns to a student his or her
+
+\begin{enumerate}[a)]
+    \item \textbf{mobile phone number.}\\
+    The function is one-to-one if no students share a phone number, which is expected.
+    \item \textbf{student identification number.}\\
+    The function is one-to-one if no students share an ID number, which is expected.
+    \item \textbf{final grade in the class.}
+    The function is one-to-one iff no students share a final grade in the class. 
+    \item \textbf{home town.}
+    The function is one-to-one iff no students share a home town.
+\end{enumerate}
+
+\pagebreak
+\prob{26}
+\begin{enumerate}[a)]
+    \item Prove that a strictly increasing function from \(\AllReals\) to itself is one-to-one.
+    \begin{proof}
+        Lets take the strictly increasing function \(f(x) = x + 2)\). We can prove that this function is one-to-one by proving that for all \(x, y \in \AllReals\), \(f(x) = f(y) \implies x = y\).
+        \begin{align*}
+            f(x) &= f(y)\\
+            x + 2 &= y + 2\\
+            x &= y
+        \end{align*}
+    \end{proof}
+    \item Give an example of an increasing function from \(\AllReals\) to itself that is not one-to-one.\\
+    The piecewise function, \(f(x) = \begin{cases} 
+        0 & x\leq 0 \\
+        x & x>0
+     \end{cases}\) is increasing, but not one-to-one as any two inputs less than or equal to 0 will produce the same output, 0.
+\end{enumerate}
+\end{document}
