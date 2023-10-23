@@ -1,0 +1,276 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newcommand{\hmwkTitle}{Homework 6}
+\newcommand{\hmwkDueDate}{October 26, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\textbf{Due\ on\ \hmwkDueDate\ at 11:59pm}}\\
+    \normalsize\text{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+\newcommand{\union}{\cap}
+\newcommand{\intersection}{\cup}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllNaturals}{\mathbb{N}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+\unit{2.3}
+\prob{12} Determine whether each of these functions from \(\AllIntegers\) to \(\AllIntegers\) is one-to-one.
+\begin{enumerate}[a)]
+    \item \(f(n) = n - 1\).
+    This function is one-to-one because for every \(n\) there is a unique \(n-1\). Assuming \(f(n)\) is one-to-one, \(f(n) = f(m) \implies n-1 = m-1 \implies n = m\).
+    \item \(f(n) = n^2 + 1\).
+    This function is not one-to-one because \(f(1) = f(-1) = 2\).
+    \item \(f(n) = n^3\).
+    This function is one-to-one because for every \(n\) there is a unique \(n^3\). Assuming \(f(n)\) is one-to-one, \(f(n) = f(m) \implies n^3 = m^3 \implies n = m\).
+\end{enumerate}
+\pagebreak
+
+\prob{20} Give an example of a function from \(\AllNaturals\) to \(\AllNaturals\) that is
+
+\begin{enumerate}[a)]
+    \item one-to-one but not onto.
+    \begin{align*}
+        f(n) = n^2
+    \end{align*}
+    \item onto but not one-to-one.
+    \begin{align*}
+        f(n) = \lceil \frac{n}{2} \rceil\\
+    \end{align*}
+    or
+    \begin{align*}
+        f(n) = \begin{cases}
+            \frac{n}{2} & n \text{ is even}\\
+            \frac{n+1}{2} & n \text{ is odd}
+        \end{cases}
+    \end{align*}
+    \item both onto and one-to-one (but different from the identity function).
+    \begin{align*}
+        f(n) = \begin{cases}
+            n-1 & n \text{ is even}\\
+            n+1 & n \text{ is odd}
+        \end{cases}
+    \end{align*}
+    \item neither one-to-one nor onto.
+    \begin{align*}
+        f(n) = 1
+    \end{align*}
+\end{enumerate}
+
+\pagebreak
+
+\prob{22} Determine whether each of these functions is a bijection
+from \(\AllReals\) to \(\AllReals\).
+\begin{enumerate}[a)]
+    \item \(f(x) = -3x+4\)\\
+    Yes. The function is onto as \(\forall y \in \AllReals, \exists x \in \AllReals, f(x) = y\) since \(f(\frac{4-x}{3}) = x\). \(f(x)\) is one-to-one because \(f(x) = f(y) \implies x = y\) as shown,
+    \begin{align*}
+        f(x) &= f(y)\\
+        -3x+4 &= -3y+4\\
+        -3x &= -3y\\
+        x &= y
+    \end{align*}
+    Therefore, f(x) is a bijection.
+    \item \(f(x) = -3x^2+7\)\\
+    No, \(f(x)\) is not onto because there is no \(x\in\AllReals\) where \(f(x) = 8\), and is not a bijection.
+    \item \(f(x) = \frac{x+1}{x+2}\)\\
+    No, \(f(x)\) is not onto because there is no \(x\in\AllReals\) where \(f(x) = 1\), and is not a bijection.
+    \item \(f(x) = x^5+1\)\\
+    Yes. The function is onto as \(\forall y \in \AllReals, \exists x \in \AllReals, f(x) = y\) as it is strictly increasing. \(f(x)\) is one-to-one because \(f(x) = f(y) \implies x = y\) as shown,
+    \begin{align*}
+        f(x) &= f(y)\\
+        x^5+1 &= y^5+1\\
+        x^5 &= y^5\\
+        x &= y
+    \end{align*}
+    Therefore, f(x) is a bijection.
+\end{enumerate}
+\pagebreak
+
+\prob{28} Show that the function \(f(x) = e^x\) from the set of real numbers to the set of real numbers is not invertible, but if the codomain is restricted to the set of positive real numbers the resulting function is invertible.\begin{proof}
+    Since \(f(x)=e^x\) is not onto as there is no real \(x\) where \(f(x) < 0 \), it is not invertible. Instead, we restrict the function to \(\AllReals \rightarrow \AllReals^+\) and let \(f: \AllReals \rightarrow \AllReals^+, f(x) = e^x\). We prove that the function is one-to-one as follows,
+    \begin{align*}
+        f(x) &= f(y)\\
+        e^x &= e^y\\
+    \end{align*}
+    Since the inverse of \(e^x\) is \(\ln(x)\), we can apply it to both sides. The natural log function has a domain of \(\AllReals^+\) and range of \(\AllReals\),
+    \begin{align*}
+        \ln(e^x) &= \ln(e^y)\\
+        x &= y
+    \end{align*}
+    Therefore \(f(x)\) is one-to-one. We can show that the function is onto as the inverse of \(e^x\) is \(\ln(x)\) and the range of \(\ln(x)\) is \(\AllReals\). Since \(f(x)\) is both onto and one-to-one, it is invertible on \(\AllReals \rightarrow \AllReals^+\).
+\end{proof}
+\pagebreak
+
+\prob{34} Suppose that \(g\) is a function from \(A\) to \(B\) and \(f\) is a function from \(B\) to \(C\). Prove each of these statements.
+
+\begin{enumerate}[a)]
+    \item If \(f \circ g\) is onto, then \(f\) must also be onto.
+    \begin{proof}
+        \(f \circ g\ = f(g(x))\). Since \(f \circ g\) is onto, \(\forall z \in C, \exists x \in A, f(g(x)) = z\). Since \(g(x) \in B\), \(\forall z \in C, \exists y \in B, f(y) = z\). Therefore, \(f\) is onto.
+    \end{proof}
+    \item If \(f \circ g\) is one-to-one, then \(g\) must also be one-to-one.
+    \begin{proof}
+        Since \(f(g(x))\) is onto \((f \circ g)(a) = (f \circ g)(b) \implies a=b\). Given \(g(a) = g(b)\) we can apply \(f\) to both sides to get \(f(g(a)) = f(g(b)) \implies a=b\). Therefore, \(g\) is one-to-one.
+    \end{proof}
+    \item If \(f \circ g\) is a bijection, then \(g\) is onto if and only if \(f\) is one-to-one.
+    \begin{proof}
+        Let \(f \circ g\) be a bijection.
+        \begin{enumerate}
+            \item[\(\implies\)] Assume \(g\) is onto, let \(f(a) = f(b)\) for some \(a,b \in B\). Since \(g\) is onto, \(\exists x,y \in A, g(x) = a, g(y) = b\). Since \(f \circ g\) is a bijection, \begin{align*}
+                f(g(x)) = f(g(y)) \implies f(a) = f(b) \implies c = d
+            \end{align*} Therefore, \(f\) is one-to-one.
+            \item[\(\impliedby\)] Since \(f\) and \(f\circ g\) is one-to-one, \(f(g(x)) = f(g(y)) \implies f(a) = f(g) \implies c = d \). Since \(f \circ g\) is one-to-one,\begin{align*}
+                 \forall x, \exists b \in B, f(g(x)) = f(b) \implies g(x) = b
+            \end{align*} Therefore, we have identified a \(b\) for every \(x\), and \(g\) is onto.
+        \end{enumerate}
+        Since we have shown both directions, \(f\) is one-to-one if and only if \(g\) is onto.
+    \end{proof}
+\end{enumerate}
+\pagebreak
+
+\prob{36} If \(f\) and \(f \circ g\) are one-to-one, does it follow that \(g\) is one-to-one? Justify your answer.\\
+\begin{proof}
+    Yes, we will conduct a direct proof. Assuming \(g(a) = g(b)\),
+    \begin{align*}
+        f(g(a)) &= f(g(b))\\
+        (f \circ g)(a) &= (f \circ g)(b)&\text{Since }f\circ g \text{ is one-to-one}\\
+        a &= b
+    \end{align*}
+    Therefore, \(g\) is one-to-one.
+\end{proof}
+\pagebreak
+
+\prob{38} Find \(f\circ g\) and \(g \circ f\) , where \(f(x) = x^2 + 1\) and \(g(x) = x + 2\),
+are functions from \(\AllReals\) to \(\AllReals\).
+\begin{align*}
+    f \circ g &= f(g(x))= x^2 + 4x + 5\\
+    g \circ f &= g(f(x))= x^2 + 3\\
+\end{align*}
+\pagebreak
+
+\prob{74} Suppose that \(f\) is a function from \(A\) to \(B\), where \(A\) and \(B\) are finite sets with \(|A| = |B|\). Show that \(f\) is one-to-one if and only if it is onto.\\\\
+A function \(f: A \rightarrow B\) can map each element of \(A\) to a unique element of \(B\). Since \(|A| = |B|\), if \(f\) is one-to-one, then every element of \(A\) must be mapped to a different element of \(B\) and since \(|A| = |B|\), every element of \(B\) must be mapped to by an element of \(A\). Therefore, \(f\) is onto. In the other direction, in order for \(f\) to be onto it has to map every element of \(A\) to a distinct element in \(B\) since \(|A| = |B|\). Therefore, \(f\) is one-to-one. Since we have shown both directions, \(f\) is one-to-one if and only if it is onto.
+
+\pagebreak
+\end{document}
