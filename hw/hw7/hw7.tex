@@ -1,0 +1,277 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newcommand{\hmwkTitle}{Homework 7}
+\newcommand{\hmwkDueDate}{November 2, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\textbf{Due\ on\ \hmwkDueDate\ at 11:59pm}}\\
+    \normalsize\text{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllNaturals}{\mathbb{N}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+
+\begin{document}
+
+\maketitle
+
+
+\pagebreak
+
+\unit{2.3}
+\prob{44}
+Let \(f\) be the function from \(\AllReals\) to \(\AllReals\) defined by
+\(f(x) = x^2\). Find
+
+\begin{enumerate}[a)]
+    \item \(f^{-1}(\{1\})\)
+    \item \(f^{-1}(\{x \mid 0 < x < 1\})\)
+    \item \(f^{-1}(\{x \mid x > 4\})\)
+\end{enumerate}
+\textbf{Note: } \(f^{-1}(x) = \{\pm\sqrt{x}\}\)
+\begin{enumerate}[a)]
+    \item \{1, -1\}
+    \item \(\{x \neq 0 \mid -1 < x < 1\}\)
+    \item \(\{x \mid (x > 2) \Or (x < -2)\}\)
+\end{enumerate}
+
+\pagebreak
+
+\prob{46}
+Let \(f\) be a function from \(A\) to \(B\). Let \(S\) and \(T\) be subsets of \(B\). Show that
+
+\begin{enumerate}[a)]
+    \item \(f^{-1}(S \union T) = f^{-1}(S) \union f^{-1}(T)\)
+    \begin{proof}We will use the definition of \(f^{-1}(S)\) to prove this.
+        \begin{enumerate}
+            \item[\(\rightarrow\)] Let \(x \in f^{-1}(S \union T)\). Then \(f(x) \in S \union T\). Thus \(f(x) \in S\) or \(f(x) \in T\). Thus \(x \in f^{-1}(S)\) or \(x \in f^{-1}(T)\). Thus \(x \in f^{-1}(S) \union f^{-1}(T)\).
+            \item[\(\leftarrow\)] Let \(x \in f^{-1}(S) \union f^{-1}(T)\). Then \(x \in f^{-1}(S)\) or \(x \in f^{-1}(T)\). Thus \(f(x) \in S\) or \(f(x) \in T\). Thus \(f(x) \in S \union T\). Thus \(x \in f^{-1}(S \union T)\).
+        \end{enumerate}
+    Therefore, \(f^{-1}(S \union T) = f^{-1}(S) \union f^{-1}(T)\).
+    \end{proof}
+    \item \(f^{-1}(S \intersection T) = f^{-1}(S) \intersection f^{-1}(T)\)
+    \begin{proof}
+        We will use the same method as part a) to prove this.
+        \begin{enumerate}
+            \item [\(\rightarrow\)] Let \(x \in f^{-1}(S \intersection T)\). Then \(f(x) \in S \intersection T\). Thus \(f(x) \in S\) and \(f(x) \in T\). Thus \(x \in f^{-1}(S)\) and \(x \in f^{-1}(T)\). Thus \(x \in f^{-1}(S) \intersection f^{-1}(T)\).
+            \item [\(\leftarrow\)] Let \(x \in f^{-1}(S) \intersection f^{-1}(T)\). Then \(x \in f^{-1}(S)\) and \(x \in f^{-1}(T)\). Thus \(f(x) \in S\) and \(f(x) \in T\). Thus \(f(x) \in S \intersection T\). Thus \(x \in f^{-1}(S \intersection T)\).
+        \end{enumerate}
+    Therefore, \(f^{-1}(S \intersection T) = f^{-1}(S) \intersection f^{-1}(T)\).
+    \end{proof}
+\end{enumerate}
+\pagebreak
+
+
+\unit{4.1}
+\prob{12}
+Prove that if \(a\) is a positive integer, then \(4\) does not divide \(a^2 + 2\).
+\begin{proof}
+    We will conduct a proof by contradicition. Assume \(4 \mid a^2 + 2\). This means that \(\exists k \in \AllIntegers, 4k = a^2 + 2\). We can rewrite this as \(a^2 = 4k - 2 = 2(2k - 1)\). This means that \(a^2\) is even which means that \(a\) is even. This means that \(\exists j \in \AllIntegers, a = 2j\). We can rewrite this as \(a^2 = 4j^2\). This means that \(a^2\) is divisible by 4. This means that \(4 \mid a^2\). This means that \(4 \mid a^2 + 2\) and \(4 \mid a^2\). We can then use identites to show that \(4 \mid a^2 - (a^2 + 2) \equiv 4 \mid 2\). This is a contradiction because \(4 \nmid 2\). Therefore, \(4 \nmid a^2 + 2\).
+\end{proof}
+
+\pagebreak
+
+\prob{30}
+Find the integer a such that\\
+\begin{enumerate}[a)]
+    \item \(a \equiv 43\pmod{23}\) and \(-22 \leq a \leq 0\)
+    \begin{align*}
+        a = -3
+    \end{align*}
+    \item \(a \equiv 17\pmod{29}\) and \(-14 \leq a \leq 14\)
+    \begin{align*}
+        a = -12
+    \end{align*}
+    \item \(a \equiv -11\pmod{21}\) and \(90 \leq a \leq 110\)
+    \begin{align*}
+        a = 94
+    \end{align*}
+\end{enumerate}
+\pagebreak
+
+\prob{34}
+Decide whether each of these integers is congruent to 3 modulo 7.\\
+\textbf{Note: } \(a \equiv b \pmod n\) means that \(n \mid (a - b)\).
+\begin{enumerate}[a)]
+    \item 37
+    \begin{align*}
+        37 \not \equiv 3 \pmod 7 \text{ because } 7 \nmid (37 - 3) = 34
+    \end{align*}
+    \item 66
+    \begin{align*}
+        66 \equiv 3 \pmod 7 \text{ because } 7 \mid (66 - 3) = 63
+    \end{align*}
+    \item -17
+    \begin{align*}
+        -17 \not \equiv 3 \pmod 7 \text{ because } 7 \nmid (-17 - 3) = -20
+    \end{align*}
+    \item -67
+    \begin{align*}
+        -67 \equiv 3 \pmod 7 \text{ because } 7 \mid (-67 - 3) = -70
+    \end{align*}
+\end{enumerate}
+\pagebreak
+
+\prob{44}
+Show that if \(n\) is an integer then \(n^2 \equiv 0\) or 1\(\pmod 4\).
+\begin{proof}
+    We will conduct a proof by cases on \(n\). 
+    \begin{enumerate}
+        \item [\(n\) is even]
+        \begin{align*}
+            n = 2k \text{ for some } k \in \AllIntegers\\
+            n^2 = 4k^2 = 4(k^2)\\
+            \exists \bar{k} \in \AllIntegers, k^2 = \bar{k}\\
+            n^2 = 4\bar{k}\\
+            n^2 \equiv 0 \pmod 4
+        \end{align*}
+        \item [\(n\) is odd]
+        \begin{align*}
+            n = 2k + 1 \text{ for some } k \in \AllIntegers\\
+            n^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1\\
+            \exists \bar{k} \in \AllIntegers, k^2 + k = \bar{k}\\
+            n^2 = 4\bar{k} + 1\\
+            n^2 \equiv 1 \pmod 4
+        \end{align*}
+    \end{enumerate}
+    Therefore, \(n^2 \equiv 0\) or 1\(\pmod 4\).
+\end{proof}
+\pagebreak
+
+\prob{46}
+Prove that if \(n\) is an odd positive integer, then \(n^2 \equiv 1 \pmod 8\).
+\begin{proof}
+    We will conduct a direct proof. Let \(n\) be an odd positive integer.
+    \begin{align*}
+        \exists k \in \AllIntegers, n = 2k + 1\\
+        n^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1 = 4(k)(k+1) + 1\\
+    \end{align*}
+    Note, either \(k\) or \(k+1\) must be even, therefore
+    \begin{align*}
+        \exists \bar{k} \in \AllIntegers, k(k+1) = 2\bar{k}\\
+        n^2 = 4(2\bar{k}) + 1 = 8\bar{k} + 1\\
+        n^2 \equiv 1 \pmod 8
+    \end{align*}
+\end{proof}
+\pagebreak
+
+
+\end{document}
