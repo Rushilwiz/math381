@@ -1,0 +1,212 @@
+\documentclass{article}
+
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage[shortlabels]{enumitem}
+\usepackage{mathtools}
+\usepackage{amssymb}
+
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Problem \arabic{#1} (continued)}{Problem \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Problem \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Problem \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newcommand{\hmwkTitle}{Homework 9}
+\newcommand{\hmwkDueDate}{December 6, 2023}
+\newcommand{\hmwkClass}{Discrete Math}
+\newcommand{\hmwkClassTime}{Section 003}
+\newcommand{\hmwkClassInstructor}{Reese Lance}
+\newcommand{\hmwkAuthorName}{\textbf{Rushil Umaretiya}}
+
+%
+% Title Page
+%
+
+\title{
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    \normalsize\vspace{0.1in}\small{\textbf{Due\ on\ \hmwkDueDate\ at 11:59pm}}\\
+    \normalsize\text{Tuesday/Thursday 11:00-12:15, Phillips 383}\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\ - \hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\hmwkAuthorName\\\small{rumareti@unc.edu}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+\newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #1} (#2)}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+\newcommand{\unit}[1]{\section{Unit #1}}
+\newcommand{\problem}[1]{\textbf{\##1}}
+\newcommand{\prob}[1]{\problem{#1}}
+
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\Bias}{\mathrm{Bias}}
+
+\renewcommand{\And}{\wedge}
+\newcommand{\Or}{\vee}
+\newcommand{\Xor}{\oplus}
+\newcommand{\Not}{\neg}
+\newcommand{\Implies}{\rightarrow}
+\newcommand{\Iff}{\leftrightarrow}
+\newcommand{\union}{\cup}
+\newcommand{\intersection}{\cap}
+
+\newcommand{\AllIntegers}{\mathbb{Z}}
+\newcommand{\AllNaturals}{\mathbb{N}}
+\newcommand{\AllRationals}{\mathbb{Q}}
+\newcommand{\AllReals}{\mathbb{R}}
+\newcommand{\AllComplexes}{\mathbb{C}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\unit{2.5}
+\prob{8}
+Show that a countably inﬁnite number of guests arriving at Hilbert's fully occupied Grand Hotel can be given rooms without evicting any current guest.\\
+
+Given that every room in the hotel has a occupied, we would place the first arriving guest in the first room. We would then move the guest in the first room to the second room, move the second room guest to the third room, and so on moving every guest in room \(n\) to room \(n+1\). Since Hilbert's Grand Hotel has an infinite amount of rooms, this is possible. We would repeat this process for every arriving guest, thereofre showing that a countably infinite number of arriving guests can be given rooms without evicting any current guest.
+
+\pagebreak
+\prob{22}
+Suppose that A is a countable set. Show that the set B is also countable if there is an onto function f from A to B.\\
+
+\begin{proof}
+    An onto function would be one that maps all elements of A to B. Since A is countable, we can list all elements of A as \(a_1, a_2, a_3, \dots\) Since f is onto, we can list all elements of B as \(f(a_1), f(a_2), f(a_3), \dots\) Since we can list all elements of B, B is countable.
+\end{proof}
+
+\pagebreak
+\prob{40}
+Show that if S is a set, then there does not exist an onto function \(f\) from \(S\) to \(P(S)\), the power set of \(S\). Conclude that \(|S| < |P(S)|\). This result is known as \textbf{Cantor's theorem}. [\(Hint\): Suppose such a function \(f\) existed. Let \(T = \{s \in S | s \notin f (s)\}\) and show that no elements can exist for which \(f(s) = T\).]
+
+\begin{proof}
+    Suppose such a function \(f\) existed. Let \(T = \{s \in S | s \notin f (s)\}\). Since \(T \in P(S)\), there must exist some \(s \in S\) such that \(f(s) = T\). However, if \(s \in T\), then \(s \notin f(s)\), and if \(s \notin T\), then \(s \in f(s)\). Therefore, no such \(s\) can exist, and \(f\) cannot be onto. Since \(f\) cannot be onto, \(|S| < |P(S)|\).
+\end{proof}
+
+\pagebreak
+
+\unit{6.2}
+\prob{6}
+There are six professors teaching the introductory discrete mathematics class at a university. The same ﬁnal exam is given by all six professors. If the lowest possible score on the ﬁnal is 0 and the highest possible score is 100, how many students must there be to guarantee that there are two students with the same professor who earned the same ﬁnal examination score?\\
+
+To solve this problem, we can use the Pigeonhole Principle. The principle states that if \(n\) items are put into \(m\) containers, and \(n>m\), then at least one container must contain more than one item. Since we have six professors that can each give scores ranging from 0 to 100, we have 101 possible scores for each professor. Therefore the total number of unique combinations of scores and professors is
+\begin{align*}
+    101 \times 6 = 606
+\end{align*}
+
+In order to guarantee a repeat we will add one, resulting in \textbf{607 students} necessary to guarantee that there are two students with the same professor with the same score.
+
+\pagebreak
+\prob{10}
+Show that if \(f\) is a function from \(S\) to \(T\), where \(S\) and \(T\) are finite sets with \(|S| > |T|\), then there are elements \(s_1\) and \(s_2\) in \(S\) such that \(f(s_1) = f(s_2)\), or in other words, \(f\) is not one-to-one.\\
+
+Given that \(|S| > |T|\), we can use the Pigeonhole Principle to show that there are elements \(s_1\) and \(s_2\) in \(S\) such that \(f(s_1) = f(s_2)\). Since \(|S| > |T|\), there must be at least one element in \(S\) that maps to the same element in \(T\). Therefore, \(f\) is not one-to-one.
+
+\pagebreak
+
+\unit{6.3}
+\prob{14}
+In how many ways can a set of two positive integers less than 100 be chosen?
+
+\begin{align*}
+    \binom{99}{2} = \frac{99!}{2!(99-2)!} = \frac{99!}{2!97!} = \frac{99 \times 98}{2} = 4851
+\end{align*}
+
+\pagebreak
+\prob{26}
+How many ways are there for three penguins and six puﬃns to stand in a line so that\\
+
+For these problems we can treat the group that needs to stand together as a single unit.
+
+\begin{enumerate}[a)]
+    \item all puffins stand together?
+
+    If all the puffins are standing together then there are 4! ways all the units can stand and 6! ways all the puffins can stand, producing a total of
+
+    \begin{align*}
+        4! \times 6! = 24 \times 720 = 17280
+    \end{align*}
+
+    \item all penguins stand together?
+
+    If all the penguins are standing together then there are 7! ways all the units can stand and 3! ways all the penguins can stand, producing a total of
+
+    \begin{align*}
+        7! \times 3! = 5040 \times 6 = 30240
+    \end{align*}
+\end{enumerate}
+\end{document}
